@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#4f46e5">
+<title>MedGuide AI</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">✚</div>
+      <div>
+        <h1>MedGuide AI</h1>
+        <p>Medical education · Knowledge base + web research</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span id="status" class="status">Checking…</span>
+      <button id="theme" class="icon-btn" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+      <button id="clear" class="icon-btn" type="button" title="Start a new chat">↺ New chat</button>
+    </div>
+  </header>
+
+  <div class="notice" role="note">
+    <span aria-hidden="true">⚠</span>
+    <span>Educational guidance only, not a diagnosis. For severe symptoms such as chest pain, trouble breathing or heavy bleeding, contact emergency services immediately.</span>
+  </div>
+
+  <section id="messages" aria-live="polite" aria-label="Conversation">
+    <article class="msg bot">
+      <div class="avatar" aria-hidden="true">✚</div>
+      <div class="bubble">Hello! Ask a medical question, upload an image, or use the microphone. I'll cite available sources and explain uncertainty.</div>
+    </article>
+  </section>
+
+  <div id="chips" class="chips" aria-label="Suggested questions">
+    <button type="button" class="chip">What are common causes of headaches?</button>
+    <button type="button" class="chip">How do antibiotics work?</button>
+    <button type="button" class="chip">Explain type 2 diabetes simply</button>
+    <button type="button" class="chip">When should I see a doctor for a fever?</button>
+  </div>
+
+  <div id="preview" hidden>
+    <img id="thumbnail" alt="Selected image">
+    <button id="remove" type="button">Remove ×</button>
+  </div>
+
+  <video id="video" autoplay playsinline hidden></video>
+  <div id="cameraActions" hidden>
+    <button id="snap" type="button" class="primary-sm">Capture</button>
+    <button id="closeCamera" type="button">Close camera</button>
+  </div>
+  <canvas id="canvas" hidden></canvas>
+
+  <form id="chatForm">
+    <div class="composer">
+      <textarea id="message" placeholder="Describe your symptoms or ask a question…" rows="1" required maxlength="4000"></textarea>
+      <button id="send" type="submit" aria-label="Send">Send ➜</button>
+    </div>
+    <div class="toolbar">
+      <label class="action" for="image">📎 Image</label>
+      <input id="image" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+      <button class="action" id="camera" type="button">📷 Camera</button>
+      <button class="action" id="mic" type="button">🎤 Voice</button>
+      <button class="action" id="listen" type="button">🔊 Read answer</button>
+      <span id="count" class="count">0 / 4000</span>
+    </div>
+  </form>
+
+  <details>
+    <summary>API access (optional)</summary>
+    <input id="token" type="password" placeholder="API_TOKEN from .env" autocomplete="off">
+  </details>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

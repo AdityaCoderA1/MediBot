@@ -1,11 +1,19 @@
-from app.config import settings
+from app.agent import graph 
 
-print("OpenRouter configured:", bool(settings.openrouter_api_key))
-print("Pinecone configured:", bool(settings.pinecone_api_key))
-print("Tavily configured:", bool(settings.tavily_api_key))
 
-print("Chat model:", settings.openrouter_chat_model)
-print("Embedding model:", settings.openrouter_embed_model)
-print("Vision model:", settings.openrouter_vision_model)
+config = {"configurable": {"thread_id": "user_123"}}
 
-print("Pinecone index:", settings.pinecone_index)
+result = graph.invoke(
+    {
+        "question": "What causes headaches?",
+        "history": [],
+        "image_description": "",
+        "kb": [],
+        "web": [],
+        "answer": "",
+        "route": ""
+    },
+    config=config
+)
+
+print("Final Result:", result)
